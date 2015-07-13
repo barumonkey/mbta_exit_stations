@@ -25,22 +25,27 @@ def end_destination_to_end_station_and_exit(address):
     station_exit = 'Prospect'
     return station_name, station_exit
 
-# Given end station and end exit,
+# Given direction, end station, and end exit,
 # return which car and which door to be at when exiting
 # (Xth car from the front/back, front/middle/back door)
-def end_exit_to_car_and_door(end_station='Central', end_exit='Pearl'):
+def end_exit_to_car_and_door(direction='in', end_station='Central', end_exit='Pearl'):
 
     red_exits =     [ [ None,None,None ], [ None,None,None ], [ None,None,None ], [ None,None,None ], [ None,None,None ], [ None,None,None ] ]
 
-    davis_exits =   [ [ None,None,None ], [ None,None,None ], [ 'All S',None,None ], [ None,None,None ], [ 'All N',None,None ], [ None,None,None ] ]
-    porter_exits =  [ [ None,None,None ], [ None,None,None ], [ None,None,None ], [ None,'All',None ], [ None,None,None ], [ None,None,None ] ]
-    harvard_exits = [ [ 'Main',None,None ], [ None,None,None ], [ None,None,None ], [ 'Church S',None,'Church N' ], [ None,None,None ], [ None,None,None ] ]
-    central_exits = [ [ None,'Pearl',None ], [ None,None,None ], [ None,'Essex','Prospect' ], [ None,None,None ], [ None,None,None ], [ None,None,None ] ]
-    kendall_exits = [ [ None,'Main S',None ], [ None,None,None ], [ None,None,None ], [ None,None,None ], [ None,None,'Main N' ], [ None,None,None ] ]
-    charles_exits = [ [ 'All',None,None ], [ None,None,None ], [ None,None,None ], [ None,None,None ], [ None,None,None ], [ None,None,None ] ]
-    park_exits =    [ [ 'Street',None,'Lechmere' ], [ None,'Outbound',None ], [ None,None,None ], [ None,None,None ], [ None,None,None ], [ 'Emergency',None,None ] ]
-    dtx_exits =     [ [ None,None,None ], [ None,None,None ], [ 'Concourse','Chauncy',None ], [ None,None,None ], [ None,None,None ], [ 'Washington',None,'Orange' ] ]
-    south_exits =   [ [ None,None,None ], [ None,'Commuter S',None ], [ 'Silver',None,None ], [ None,None,None ], [ 'Commuter N',None,None ], [ None,None,None ] ]
+    if direction == 'in':
+        davis_exits =   [ [ None,None,None ], [ None,None,None ], [ 'All S',None,None ], [ None,None,None ], [ 'All N',None,None ], [ None,None,None ] ]
+        porter_exits =  [ [ None,None,None ], [ None,None,None ], [ None,None,None ], [ None,'All',None ], [ None,None,None ], [ None,None,None ] ]
+        harvard_exits = [ [ 'Main',None,None ], [ None,None,None ], [ None,None,None ], [ 'Church S',None,'Church N' ], [ None,None,None ], [ None,None,None ] ]
+        central_exits = [ [ None,'Pearl',None ], [ None,None,None ], [ None,'Essex','Prospect' ], [ None,None,None ], [ None,None,None ], [ None,None,None ] ]
+        kendall_exits = [ [ None,'Main S',None ], [ None,None,None ], [ None,None,None ], [ None,None,None ], [ None,None,'Main N' ], [ None,None,None ] ]
+        charles_exits = [ [ 'All',None,None ], [ None,None,None ], [ None,None,None ], [ None,None,None ], [ None,None,None ], [ None,None,None ] ]
+        park_exits =    [ [ 'Street',None,'Lechmere' ], [ None,'Outbound',None ], [ None,None,None ], [ None,None,None ], [ None,None,None ], [ 'Emergency',None,None ] ]
+        dtx_exits =     [ [ None,None,None ], [ None,None,None ], [ 'Concourse','Chauncy',None ], [ None,None,None ], [ None,None,None ], [ 'Washington',None,'Orange' ] ]
+        south_exits =   [ [ None,None,None ], [ None,'Commuter S',None ], [ 'Silver',None,None ], [ None,None,None ], [ 'Commuter N',None,None ], [ None,None,None ] ]
+    elif direction == 'out':
+        sys.exit('\nSorry, I don\'t know outboud exits yet!\n')
+    else:
+        sys.exit('\nDirection must be "in" or "out".\n')
 
     stations =      ['Davis',    'Porter',     'Harvard',     'Central',     'Kendall',     'Charles',     'Park',     'Dtx',     'South']
     station_exits = [davis_exits, porter_exits, harvard_exits, central_exits, kendall_exits, charles_exits, park_exits, dtx_exits, south_exits]
@@ -66,6 +71,7 @@ def end_exit_to_car_and_door(end_station='Central', end_exit='Pearl'):
 
     if my_car and my_door:
         my_car_door = my_car+', '+my_door+' door.'
+        print('At '+end_station+', to get out at '+end_exit+', be at the')
         print(my_car_door)
         return [my_car, my_door, my_car_door]
 
@@ -78,4 +84,4 @@ def end_car_door_to_start_station_location(my_car, my_door, start_station='davis
     pass
 
 
-end_exit_to_car_and_door()
+end_exit_to_car_and_door(direction='in', end_station='South', end_exit='Silver')
