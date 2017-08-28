@@ -15,7 +15,7 @@ import sys
 import urllib
 import json
 
-
+# edited
 # Helper function. Returns distance between two map locations
 def get_distance(point_a, point_b):
     # default vaules for testing
@@ -36,36 +36,42 @@ def get_distance(point_a, point_b):
     full_url = url_base+'?'+origins+'&'+destinations+'&'+mode+'&'+units+'&'+key
 
     """
-    EXAMPLE RESPONSE
+    EXAMPLE
 
-    {
-      "status": "OK",
-      "origin_addresses": [ "Vancouver, BC, Canada" ],
-      "destination_addresses": [ "San Francisco, California, USA", "Ottawa, Canada" ],
-      "rows": [ {
-        "elements": [ {
+        https://maps.googleapis.com/maps/api/distancematrix/json
+        ?origins=       Vancouver+BC
+        &destinations=  San+Francisco|Victoria+BC
+        &mode=          bicycling
+        &key=           YOUR_API_KEY
+
+        {
           "status": "OK",
-          "duration": {
-            "value": 340110,
-            "text": "3 days 22 hours"
-          },
-          "distance": {
-            "value": 1734542,
-            "text": "735 mi"
-          }
-        }, {
-          "status": "OK",
-          "duration": {
-            "value": 24487,
-            "text": "6 hours 48 minutes"
-          },
-          "distance": {
-            "value": 129324,
-            "text": "129 mi"
-          }
-        } ]
-      } ]
-    }
+          "origin_addresses": [ "Vancouver, BC, Canada" ],
+          "destination_addresses": [ "San Francisco, California, USA", "Victoria, BC, Canada" ],
+          "rows": [ {
+            "elements": [ {
+              "status": "OK",
+              "duration": {
+                "value": 340110,
+                "text": "3 days 22 hours"
+              },
+              "distance": {
+                "value": 1734542,
+                "text": "735 mi"
+              }
+            }, {
+              "status": "OK",
+              "duration": {
+                "value": 24487,
+                "text": "6 hours 48 minutes"
+              },
+              "distance": {
+                "value": 129324,
+                "text": "129 mi"
+              }
+            } ]
+          } ]
+        }
     """
 
 
