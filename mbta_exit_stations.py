@@ -15,7 +15,6 @@ import sys
 import urllib
 import json
 
-# edited 3
 # Helper function. Returns distance between two map locations
 def get_distance(point_a, point_b):
     # default vaules for testing
